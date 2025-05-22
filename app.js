@@ -2,6 +2,7 @@ const express = require('express');
 const logger = require('./middlewares/logger');
 const cookieParser = require('cookie-parser');
 const errorRoute = require('./middlewares/errorRoute');
+const authRouter = require('./routes/authRoutes');
 
 // create express app
 const app = express();
@@ -14,9 +15,7 @@ app.use(cookieParser());
 
 app.use(logger);
 
-app.get('/api/v1', (req, res) => {
-    res.json({ message: 'Hello World!' });
-});
+app.use('/api/v1/auth', authRouter);
 
 // error route
 app.use(errorRoute);
