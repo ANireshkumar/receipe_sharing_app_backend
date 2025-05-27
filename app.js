@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const errorRoute = require('./middlewares/errorRoute');
 const authRouter = require('./routes/authRoutes');
 const cors = require('cors');
+const postRouter = require('./routes/postRoutes');
 
 // create express app
 const app = express();
@@ -23,6 +24,7 @@ app.use(cookieParser());
 app.use(logger);
 
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/posts', postRouter);
 
 // error route
 app.use(errorRoute);
