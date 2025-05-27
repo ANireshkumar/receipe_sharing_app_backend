@@ -75,6 +75,32 @@ const postController = {
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
+    },
+    like: async (req, res) => {
+        try {
+            // get the post id from the request params
+            const { id } = req.params;
+
+            // Get post
+            const post = await Post.findById(id);
+
+            // Check if the post has already been liked
+            if (post.likes.includes(req.userId)) {
+                // dislike the post
+                post.likes = post.likes.filter(userId => userId.toString() !== req.userId);
+                await post.save();
+
+                return res.status(200).json({ message: 'Post disliked ' });
+            }
+
+            // Like post
+            post.likes.push(req.userId);
+            await post.save();
+
+            res.status(200).json({ message: 'Post liked' });
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
     }
 }
 

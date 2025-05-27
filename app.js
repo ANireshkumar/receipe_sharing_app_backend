@@ -5,6 +5,7 @@ const errorRoute = require('./middlewares/errorRoute');
 const authRouter = require('./routes/authRoutes');
 const cors = require('cors');
 const postRouter = require('./routes/postRoutes');
+const adminRouter = require('./routes/adminRoutes');
 
 // create express app
 const app = express();
@@ -25,6 +26,7 @@ app.use(logger);
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/posts', postRouter);
+app.use('/api/v1/admin', adminRouter);
 
 // error route
 app.use(errorRoute);
