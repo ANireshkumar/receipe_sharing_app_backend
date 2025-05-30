@@ -12,7 +12,7 @@ const app = express();
 
 // enable CORS
 app.use(cors({
-    origin: 'https://recipeappdeployed.netlify.app/',
+    origin: 'https://recipeappdeployed.netlify.app',
     credentials: true
 }));
 
