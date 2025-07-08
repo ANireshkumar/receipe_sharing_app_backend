@@ -6,6 +6,8 @@ const authRouter = require('./routes/authRoutes');
 const cors = require('cors');
 const postRouter = require('./routes/postRoutes');
 const adminRouter = require('./routes/adminRoutes');
+const multer = require('multer');
+const path = require('path');
 
 // create express app
 const app = express();
@@ -13,6 +15,8 @@ const app = express();
 // enable CORS
 app.use(cors({
     origin: 'https://recipeappdeployed.netlify.app',
+    // origin: 'http://localhost:5173',
+
     credentials: true
 }));
 
@@ -23,6 +27,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(logger);
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/posts', postRouter);

@@ -23,6 +23,10 @@ const postSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     }],
+    image: {
+        type: String,
+        trim: true
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Post', postSchema, 'posts');

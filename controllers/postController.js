@@ -5,11 +5,14 @@ const postController = {
     createPost: async (req, res) => {
         try {
             const { title, content } = req.body;
+            const imageUrl = req.file ? `/public/images/${req.file.filename}` : null;
+
 
             // Create post
             const newPost = new Post({
                 title,
                 content,
+                image: imageUrl,
                 author: req.userId
             });
 
@@ -21,7 +24,7 @@ const postController = {
             user.posts.push(savedPost._id);
             await user.save();
 
-            res.status(201).json({ message: 'Post created' });
+            res.status(201).json({ message: 'Post created', post: savedPost });
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
