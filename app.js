@@ -14,8 +14,7 @@ const app = express();
 
 // enable CORS
 app.use(cors({
-    origin: 'https://recipeappdeployed.netlify.app',
-    // origin: 'http://localhost:5173',
+    origin: ['https://recipeappdeployed.netlify.app', 'http://localhost:5173'],
 
     credentials: true
 }));
