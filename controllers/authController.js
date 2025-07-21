@@ -60,11 +60,10 @@ const authController = {
             // create a token
             const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '3h' });
 
-            // set the token in the cookie
-            res.cookie('token', token, { httpOnly: true, sameSite: 'none', maxAge: 3 * 60 * 60 * 1000, secure: true, path: '/' });
+         
 
             // return a success message
-            res.status(200).json({ message: 'User logged in!' });
+            res.status(200).json({ message: 'User logged in!', token });
         } catch (err) {
             res.status(500).json({ message: err.message });
         }
